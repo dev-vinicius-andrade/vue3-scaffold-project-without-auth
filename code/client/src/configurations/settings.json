@@ -1,0 +1,17 @@
+{
+    "site":{
+        "name":"My Site",
+        "title":"My Site",
+        "description":"My Site",
+        "creator":{
+            "name":"Default Creator",
+            "url":"https://google.com"
+        },
+        "social":{
+            "facebook":"https://facebook.com",
+            "instagram":"https://instagram.com",
+            "linkedin":"https://linkedin.com",
+            "youtube":"https://youtube.com"
+        }
+    }
+}

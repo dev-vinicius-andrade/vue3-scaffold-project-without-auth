@@ -1,0 +1,11 @@
+version: '3.9'
+services:
+  site: 
+    image: container/image/name:release
+    build: 
+      context: ./code
+      target: release
+    volumes:
+     - ./code/server/server.js:/app/server/server.js
+     - ./code/server/modules:/app/server/modules
+ 

@@ -1,0 +1,16 @@
+export enum PositionEnum {
+	left = 'left',
+	right = 'right',
+	top = 'top',
+	bottom = 'bottom',
+	center = 'center',
+	topLeft = 'topLeft',
+	topRight = 'topRight',
+	bottomLeft = 'bottomLeft',
+	bottomRight = 'bottomRight',
+	middleLeft = 'middleLeft',
+	middleRight = 'middleRight',
+	middleTop = 'middleTop',
+	middleBottom = 'middleBottom',
+	middle = 'middle',
+}

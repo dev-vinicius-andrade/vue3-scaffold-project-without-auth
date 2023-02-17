@@ -1,0 +1,142 @@
+{
+  "folders": [
+    {
+      "path": "."
+    }
+  ],
+  "launch": {
+	"compounds": [
+		{
+		  "name": "launch:client:server",
+		  "configurations": ["launch:chrome", "launch:server"]
+		}
+	  ],
+	"configurations": [
+			{
+				"type": "chrome",
+				"request": "launch",
+				"name": "launch:chrome",
+				"url": "http://localhost:8085",
+				"webRoot": "${workspaceFolder}/code/client/src",
+				"sourceMaps": true,
+				"sourceMapPathOverrides": {
+					"src/*": "${webRoot}/*",
+				},
+				"skipFiles": [
+					"<node_internals>/**/*.js",
+					"**/<node_internals>/**/*.js",
+					"**/node_modules/**/*.js",
+					"**/runtime.js",
+					"**/polyfills.js",
+					"**/vendor.js",
+					"**/analytics.js"
+				],
+				"preLaunchTask": "serve-ui",
+			},
+			{
+				"type": "node",
+				"request": "launch",
+				"name": "launch:server",
+				"cwd": "${workspaceFolder}/code/server",
+				"program": "${workspaceFolder}/code/server/server.js",
+				"sourceMaps": true,
+				"runtimeExecutable": "npm",
+				"runtimeArgs": ["run-script", "serve"],
+				"preLaunchTask": "npm:install:server",
+				"env": {
+					"PORT":"8086",
+					"NODE_ENV":"debug",
+					"CLIENT_CONFIG_PATH":"${workspaceFolder}/code/client/src/configurations/settings.json",
+					"EU":"TESTE"
+				}
+			}
+    ],
+
+  },
+  "tasks": {
+    "version": "2.0.0",
+    "tasks": [
+			{
+				"label": "npm:install:client",
+				"type": "shell",
+				"command": "npm install",
+				"linux": {
+					"command": "if [ -d ${workspaceFolder}/code/client/node_modules ]; then npm install fi"
+				},
+				"windows": {
+					"command": "cmd",
+					"args": [
+						"/C",
+						"if not exist ${workspaceFolder}/code/client/node_modules  npm install"
+					],
+				},
+				"options": {
+					"cwd": "${workspaceFolder}/code/client"
+				},
+			},
+			{
+				"label": "npm:install:server",
+				"type": "shell",
+				"command": "npm install",
+				"linux": {
+					"command": "if [ -d ${workspaceFolder}/code/server/node_modules ]; then npm install fi"
+				},
+				"windows": {
+					"command": "cmd",
+					"args": [
+						"/C",
+						"if not exist ${workspaceFolder}/code/server/node_modules  npm install"
+					],
+				},
+				"options": {
+					"cwd": "${workspaceFolder}/code/server"
+				},
+			},
+      		{
+				"label": "serve-ui",
+				"type": "shell",
+				"command": "npm run dev",
+				"options": {
+					"cwd": "${workspaceFolder}/code/client"
+				},
+				"isBackground": true,
+				"dependsOn": [
+					"npm:install:client"
+				],
+				"problemMatcher": [
+					{
+						"base": "$tsc-watch",
+						"background": {
+							"activeOnStart": true,
+							"beginsPattern": "VITE v",
+							"endsPattern": "ready in"
+						}
+					}
+				]
+			},
+    ]
+  },
+  "extensions": {
+		"recommendations": [
+			"hollowtree.vue-snippets",
+			"esbenp.prettier-vscode",
+			"leizongmin.node-module-intellisense",
+			"formulahendry.auto-rename-tag",
+			"formulahendry.auto-close-tag",
+			"dbaeumer.vscode-eslint",
+			"mgmcdermott.vscode-language-babel",
+			"editorconfig.editorconfig",
+			"xabikos.javascriptsnippets",
+			"stylelint.vscode-stylelint",
+			"fabiospampinato.vscode-highlight",
+			"github.vscode-pull-request-github",
+			"vue.volar",
+			"antfu.iconify",
+			"cipchk.cssrem",
+			"sonarsource.sonarlint-vscode",
+			"antfu.goto-alias",
+			"Vue.vscode-typescript-vue-plugin"
+		]
+	},
+  "settings": {}
+}

@@ -1,0 +1,11 @@
+version: '3.9'
+services:
+  site: 
+    image: container/image/name:release
+    build: 
+      context: ./code/client
+      dockerfile: Dockerfile
+      target: release
+    ports:
+      - 5050:80
+   

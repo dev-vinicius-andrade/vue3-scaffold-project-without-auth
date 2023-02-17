@@ -1,0 +1,24 @@
+version: '3.9'
+services:
+  site: 
+    image: container/image/name:debug
+    build: 
+      context: ./code/client
+      dockerfile: Dockerfile
+      target: debug
+    ports:
+      - 8085:80
+    volumes:
+      - ./code/client/public:/code/public
+      - ./code/client/src:/code/src
+      - ./code/client/deploy:/code/deploy
+      - ./code/client/index.html:/code/index.html
+      - ./code/client/tsconfig.json:/code/tsconfig.json
+      - ./code/client/package.json:/code/package.json
+      - ./code/client/package-lock.json:/code/package-lock.json
+      - ./code/client/yarn.lock:/yarn.lock
+      - ./code/client/vite.config.ts:/code/vite.config.ts
+      - ./code/client/themeConfig.ts:/code/themeConfig.ts
+      - ./code/client/env.d.ts:/code/env.d.ts
+      - ./code/client/.npmrc:/code/.npmrc
+ 
